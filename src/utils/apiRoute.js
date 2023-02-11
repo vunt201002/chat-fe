@@ -1,5 +1,5 @@
 
-export const host = "http://localhost:9000";
+export const host = "https://chat-api-4gvx.onrender.com";
 export const registerRoute = `${host}/v1/user/register`;
 export const loginRoute = `${host}/v1/user/login`;
 export const setAvatarRoute = `${host}/v1/user/avatar`;
