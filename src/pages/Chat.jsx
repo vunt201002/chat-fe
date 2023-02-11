@@ -56,6 +56,17 @@ const Chat = () => {
     }, []);
 
     useEffect(() => {
+        const socket = new WebSocket(host);
+
+
+        return () => {
+            if (socket.readyState === 1) { // <-- This is important
+                socket.close();
+            }
+        };
+    });
+
+    useEffect(() => {
         if (currentUser) {
             socket.current = io(host);
             socket.current.emit("add-user", currentUser._id);
