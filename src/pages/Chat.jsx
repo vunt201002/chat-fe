@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
-import { allUserRoute, host } from "../utils/apiRoute";
+import { allUserRoute, socketHost } from "../utils/apiRoute";
 import Contact from '../components/Contact';
 import Welcome from '../components/Welcome';
 import ChatContainer from '../components/ChatContainer';
@@ -56,7 +56,7 @@ const Chat = () => {
     }, []);
 
     useEffect(() => {
-        const socket = new WebSocket(host);
+        const socket = new WebSocket(socketHost);
 
 
         return () => {
@@ -68,7 +68,7 @@ const Chat = () => {
 
     useEffect(() => {
         if (currentUser) {
-            socket.current = io(host);
+            socket.current = io(socketHost);
             socket.current.emit("add-user", currentUser._id);
         }
     }, [currentUser]);
